@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
             ds.setDefaultCloseOperation(Dashboard.EXIT_ON_CLOSE);
             
         } else {
-            jLabel1.setText("salah");
+            jLabel1.setText("password atau username anda salah!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
