@@ -180,15 +180,28 @@ public class Register extends javax.swing.JFrame {
         String username = Username_field.getText();
         String pass = String.valueOf(Password_field.getPassword());
         String role = Role.getSelectedItem().toString();
+       
         
         PreparedStatement ps;
         String query = "INSERT INTO `user`(`Name`, `Username`, `Role`, `Password`) VALUES (?, ?, ?, ?)";
-        try {
-            ps = Config.getConnection().prepareStatement(query);
-            ps.setString(1, name);
-            ps.setString(2, username);
-            ps.setString(3, role);
-            ps.setString(4, pass);
+        
+        if (name.equals("") || username.equals("") || pass.equals("")) {
+            if (name.equals("")) {
+                JOptionPane.showMessageDialog(null, "Nama harus diisi");
+            }
+            if (username.equals("")) {
+                JOptionPane.showMessageDialog(null, "Username harus diisi");
+            }
+            if (pass.equals("")) {
+                JOptionPane.showMessageDialog(null, "Password harus diisi");
+            }
+        } else {
+            try {
+                ps = Config.getConnection().prepareStatement(query);
+                ps.setString(1, name);
+                ps.setString(2, username);
+                ps.setString(3, role);
+                ps.setString(4, pass);
             
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "New User Added");
@@ -196,7 +209,7 @@ public class Register extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }    
     }//GEN-LAST:event_RegisterActionPerformed
 
     /**

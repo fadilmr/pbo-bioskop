@@ -15,10 +15,10 @@ public class Cinemasmas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Register register = new Register();
-        register.setVisible(true);
-        register.pack();
-        register.setLocationRelativeTo(null);
-        register.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
+        Dashboard lg = new Dashboard();
+        lg.setVisible(true);
+        lg.pack();
+        lg.setLocationRelativeTo(null);
+        lg.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
     }
 }
