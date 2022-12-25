@@ -5,8 +5,10 @@
  */
 package Cinemasmas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Enumeration;
-import javafx.scene.control.ToggleButton;
+//import javafx.scene.control.ToggleButton;
 import javax.swing.AbstractButton;
 
 /**
@@ -19,11 +21,10 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     
-    String[] SeatList  = new String[37];
+    static String[] SeatList  = new String[37];
     
     public Dashboard() {
         initComponents();
-        
     }
 
     /**
@@ -34,14 +35,21 @@ public class Dashboard extends javax.swing.JFrame {
     
     public void getSeat(){
         int i = 0;
+        String se = "";
         for (Enumeration<AbstractButton> buttons = SeatGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
                 SeatList[i] = button.getText();
             }
-            System.out.print(SeatList[i] + ", ");
+            if(SeatList[i] != null){
+                se = se + SeatList[i] + ",";
+            }
             i++;
         }
+        SelectedSeatText.setText(se);
+        String[] array = se.split(",");
+        System.out.println(array.length);
+        Pricetext.setText(Integer.toString(array.length*25000));
     }
     
     @SuppressWarnings("unchecked")
@@ -316,6 +324,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton1);
         jToggleButton1.setText("A1");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         SeatGroup.add(jToggleButton2);
         jToggleButton2.setText("A2");
@@ -607,17 +620,17 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SelectedSeatText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Pricetext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(Pricetext, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(CetakTiketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(29, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,6 +776,10 @@ public class Dashboard extends javax.swing.JFrame {
         getSeat();
     }//GEN-LAST:event_CetakTiketButtonActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -796,6 +813,14 @@ public class Dashboard extends javax.swing.JFrame {
                 new Dashboard().setVisible(true);
             }
         });
+        
+//        ActionListener actionListener = new ActionListener()
+//        {
+//            public void actionPerformed(ActionEvent actionEvent)
+//            {
+//                
+//            }
+//        };
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
