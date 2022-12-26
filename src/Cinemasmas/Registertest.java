@@ -6,23 +6,23 @@
 package Cinemasmas;
 
 import java.sql.PreparedStatement;
-import javax.swing.JOptionPane;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fadil
  */
-public class Register extends javax.swing.JDialog {
+public class Registertest extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegisterUser
+     * Creates new form Register
      */
-    Admin min = new Admin("", "", "");
     
-    public Register(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+   
+    public Registertest() {
         initComponents();
     }
 
@@ -35,6 +35,7 @@ public class Register extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Name_field = new javax.swing.JTextField();
@@ -47,7 +48,9 @@ public class Register extends javax.swing.JDialog {
         Register = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jLabel1.setText("jLabel1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(228, 239, 231));
 
@@ -145,7 +148,7 @@ public class Register extends javax.swing.JDialog {
                     .addComponent(Role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Register)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,13 +165,13 @@ public class Register extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Name_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Name_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Name_fieldActionPerformed
-
     private void Username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Username_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Username_fieldActionPerformed
+
+    private void Name_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Name_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Name_fieldActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
@@ -176,8 +179,36 @@ public class Register extends javax.swing.JDialog {
         String username = Username_field.getText();
         String pass = String.valueOf(Password_field.getPassword());
         String role = Role.getSelectedItem().toString();
+       
         
-        min.addUser(name, username, pass, role);
+        PreparedStatement ps;
+        String query = "INSERT INTO `user`(`Name`, `Username`, `Role`, `Password`) VALUES (?, ?, ?, ?)";
+        
+        if (name.equals("") || username.equals("") || pass.equals("")) {
+            if (name.equals("")) {
+                JOptionPane.showMessageDialog(null, "Nama harus diisi");
+            }
+            if (username.equals("")) {
+                JOptionPane.showMessageDialog(null, "Username harus diisi");
+            }
+            if (pass.equals("")) {
+                JOptionPane.showMessageDialog(null, "Password harus diisi");
+            }
+        } else {
+            try {
+                ps = Config.getConnection().prepareStatement(query);
+                ps.setString(1, name);
+                ps.setString(2, username);
+                ps.setString(3, role);
+                ps.setString(4, pass);
+            
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "New User Added");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Registertest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
     }//GEN-LAST:event_RegisterActionPerformed
 
     /**
@@ -197,30 +228,21 @@ public class Register extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registertest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registertest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registertest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registertest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Register dialog = new Register(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Registertest().setVisible(true);
             }
         });
     }
@@ -231,6 +253,7 @@ public class Register extends javax.swing.JDialog {
     private javax.swing.JButton Register;
     private javax.swing.JComboBox<String> Role;
     private javax.swing.JTextField Username_field;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

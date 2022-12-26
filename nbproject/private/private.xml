@@ -4,10 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Cinemasmas.java</file>
-            <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Dashboard.java</file>
+            <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/User.java</file>
             <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Register.java</file>
+            <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/DashboardCashier.java</file>
             <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Login.java</file>
             <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Config.java</file>
+            <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Admin.java</file>
+            <file>file:/C:/Kuliah/Sem%205/OOP/coding/Cinemasmas/src/Cinemasmas/Cashier.java</file>
         </group>
     </open-files>
 </project-private>
