@@ -49,9 +49,28 @@ public class Admin extends User{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public void addMovie(String title, int duration) {
+        PreparedStatement ps;
+        String query = "INSERT INTO `movie`(`Title`, `Duration`) VALUES (?,?)";
+        if (title.equals("")) {
+            System.out.println("input salah");
+        } else {
+            try {
+                ps = Config.getConnection().prepareStatement(query);
+                ps.setString(1, title);
+                ps.setInt(2, duration);
+                if (ps.executeUpdate() > 0) {
+                    System.out.println("New Movie Added");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         Admin min = new Admin("test", "test", "Admin");
-        min.addUser("test1", "test123", "testest", "Admin");
+        min.addMovie("Chainsawman", 3);
     }
     
 }
