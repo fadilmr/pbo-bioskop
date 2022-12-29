@@ -149,6 +149,7 @@ public class Login extends javax.swing.JFrame {
             } else {
                 jLabel1.setText("password atau username anda salah!");
             }
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,6 +5,9 @@
  */
 package Cinemasmas;
 
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fadil
@@ -14,8 +17,25 @@ public class Movie {
     private int duration;
 
     public Movie(String title, int duration) {
-        this.title = title;
-        this.duration = duration;
+        PreparedStatement ps;
+        String query = "INSERT INTO `movie`(`Title`, `Duration`) VALUES (?,?)";
+        if (title.equals("")) {
+            JOptionPane.showMessageDialog(null, "Empty Input");
+        } else {
+            try {
+                ps = Config.getConnection().prepareStatement(query);
+                ps.setString(1, title);
+                ps.setInt(2, duration);
+                if (ps.executeUpdate() > 0) {
+                    JOptionPane.showMessageDialog(null, "New Movie Added");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
+                ps.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public String getTitle() {

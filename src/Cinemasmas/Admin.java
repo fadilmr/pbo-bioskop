@@ -35,6 +35,7 @@ public class Admin extends User{
                 if (ps.executeUpdate() > 0) {
                     System.out.println("New User Added");
                 }
+                ps.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -50,22 +51,11 @@ public class Admin extends User{
     }
     
     public void addMovie(String title, int duration) {
-        PreparedStatement ps;
-        String query = "INSERT INTO `movie`(`Title`, `Duration`) VALUES (?,?)";
-        if (title.equals("")) {
-            System.out.println("input salah");
-        } else {
-            try {
-                ps = Config.getConnection().prepareStatement(query);
-                ps.setString(1, title);
-                ps.setInt(2, duration);
-                if (ps.executeUpdate() > 0) {
-                    System.out.println("New Movie Added");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        new Movie(title, duration);
+    }
+    
+    public void deleteMovie(String id) {
+        
     }
     
     public static void main(String[] args) {
