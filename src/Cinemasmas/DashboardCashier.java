@@ -7,6 +7,8 @@ package Cinemasmas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Enumeration;
 //import javafx.scene.control.ToggleButton;
 import javax.swing.AbstractButton;
@@ -20,11 +22,21 @@ public class DashboardCashier extends javax.swing.JFrame {
     /**
      * Creates new form DashboardCashier
      */
-    
+    private int id;
+    private String movie;
+    private String JamTayang;
     static String[] SeatList  = new String[37];
     
-    public DashboardCashier() {
+    public void updateSeat(Screening s) {
+    }
+    
+    public DashboardCashier(int id, String movie, String jamTayang) {
         initComponents();
+        this.id = id;
+        this.movie = movie;
+        this.JamTayang = jamTayang;
+        FilmText.setText("Film : " + movie);
+        JamText.setText("Jam Tayang: " + jamTayang);
     }
 
     /**
@@ -42,7 +54,10 @@ public class DashboardCashier extends javax.swing.JFrame {
                 SeatList[i] = button.getText();
             }
             if(SeatList[i] != null){
-                se = se + SeatList[i] + ",";
+                if (!se.equals("")) {
+                    se += ", ";
+                }
+                se = se + SeatList[i];
             }
             i++;
         }
@@ -80,12 +95,8 @@ public class DashboardCashier extends javax.swing.JFrame {
         jButton79 = new javax.swing.JButton();
         SeatGroup = new javax.swing.ButtonGroup();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        FilmText = new javax.swing.JLabel();
+        JamText = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -128,7 +139,8 @@ public class DashboardCashier extends javax.swing.JFrame {
         SelectedSeatText = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Pricetext = new javax.swing.JLabel();
-        CetakTiketButton = new javax.swing.JButton();
+        SetKursiButton = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -300,24 +312,16 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(228, 239, 231));
 
-        jLabel1.setText("Film");
+        FilmText.setText("Film : ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bocchi", "Chainsaw Man", "Mob", "SAO" }));
-
-        jLabel2.setText("Jam Tayang");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15.00", "17.30" }));
-
-        jLabel3.setText("Hari");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sabtu" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
+        JamText.setText("Jam Tayang : ");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("SCREEN");
@@ -577,7 +581,7 @@ public class DashboardCashier extends javax.swing.JFrame {
                     .addComponent(jToggleButton26)
                     .addComponent(jToggleButton33)
                     .addComponent(jToggleButton30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
@@ -586,10 +590,17 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         jLabel8.setText("Harga: ");
 
-        CetakTiketButton.setText("Cetak Tiket");
-        CetakTiketButton.addActionListener(new java.awt.event.ActionListener() {
+        SetKursiButton.setText("Set Kursi");
+        SetKursiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CetakTiketButtonActionPerformed(evt);
+                SetKursiButtonActionPerformed(evt);
+            }
+        });
+
+        ClearButton.setText("Clear Kursi");
+        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearButtonActionPerformed(evt);
             }
         });
 
@@ -601,17 +612,9 @@ public class DashboardCashier extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(FilmText, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JamText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -629,21 +632,19 @@ public class DashboardCashier extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(CetakTiketButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SetKursiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(29, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(FilmText)
+                    .addComponent(JamText))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -655,7 +656,9 @@ public class DashboardCashier extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Pricetext)
                         .addGap(18, 18, 18)
-                        .addComponent(CetakTiketButton)
+                        .addComponent(SetKursiButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ClearButton)
                         .addContainerGap())))
         );
 
@@ -678,10 +681,6 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         // TODO add your handling code here:
@@ -771,64 +770,36 @@ public class DashboardCashier extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton17ActionPerformed
 
-    private void CetakTiketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakTiketButtonActionPerformed
+    private void SetKursiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetKursiButtonActionPerformed
         // TODO add your handling code here:
         getSeat();
-    }//GEN-LAST:event_CetakTiketButtonActionPerformed
+    }//GEN-LAST:event_SetKursiButtonActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardCashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardCashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardCashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardCashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DashboardCashier().setVisible(true);
-            }
-        });
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
         
-//        ActionListener actionListener = new ActionListener()
-//        {
-//            public void actionPerformed(ActionEvent actionEvent)
-//            {
-//                
-//            }
-//        };
-    }
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+        // TODO add your handling code here:
+        SeatList = new String[SeatList.length];
+        SelectedSeatText.setText("");
+        Pricetext.setText("");
+    }//GEN-LAST:event_ClearButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CetakTiketButton;
+    private javax.swing.JButton ClearButton;
+    private javax.swing.JLabel FilmText;
+    private javax.swing.JLabel JamText;
     private javax.swing.JLabel Pricetext;
     private javax.swing.ButtonGroup SeatGroup;
     private javax.swing.JLabel SelectedSeatText;
+    private javax.swing.JButton SetKursiButton;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
@@ -848,12 +819,6 @@ public class DashboardCashier extends javax.swing.JFrame {
     private javax.swing.JButton jButton77;
     private javax.swing.JButton jButton78;
     private javax.swing.JButton jButton79;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

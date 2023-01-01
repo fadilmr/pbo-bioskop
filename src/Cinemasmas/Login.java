@@ -139,12 +139,18 @@ public class Login extends javax.swing.JFrame {
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 dispose();
-                if ("Cashier".equals(rs.getString("Role" ))) { 
-                    DashboardCashier ds = new DashboardCashier();
+                if ("Kasir".equals(rs.getString("Role" ))) { 
+                    ViewTheater ds = new ViewTheater();
                     ds.setVisible(true);
                     ds.pack();
                     ds.setLocationRelativeTo(null);
                     ds.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
+                } else {
+                    DashboardAdmin ds = new DashboardAdmin();
+                    ds.setVisible(true);
+                    ds.pack();
+                    ds.setLocationRelativeTo(null);
+                    ds.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);            
                 }
             } else {
                 jLabel1.setText("password atau username anda salah!");

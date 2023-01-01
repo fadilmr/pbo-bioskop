@@ -18,18 +18,17 @@ public class Screening {
     private HashMap<Seat, Boolean> seatAvailabilites = new HashMap<>();
     private int price;
 
-    public Screening(Movie movie, String screenTime, int screenId, Seat[] seat) {
+    public Screening(Movie movie, String screenTime, int price, Seat[] seat) {
         this.movie = movie;
         this.screenTime = screenTime;
-        this.screenId = screenId;
+        this.price = price;
+        for (Seat seat1 : seat) {
+            seatAvailabilites.put(seat1, true);
+        }
     }
     
     public void changeSeat(int i) {
-        
-    }
-    
-    public int getTheaterNum() {
-        return 0;
+        // ganti availability seat
     }
 
     public Movie getMovie() {
@@ -39,9 +38,9 @@ public class Screening {
     public int getPrice() {
         return price;
     }
-    
-    public void displayAvailable(){
-        
+
+    public HashMap<Seat, Boolean> getSeatAvailabilites() {
+        return seatAvailabilites;
     }
     
     

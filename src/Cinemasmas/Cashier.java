@@ -14,12 +14,6 @@ public class Cashier extends User{
     public Cashier(String username, String Password, String role) {
         super(username, Password, role);
     }
-
-    
-    
-    public void displayScreening() {
-        
-    }
     
     public void addTransaction() {
         
@@ -31,7 +25,7 @@ public class Cashier extends User{
 
     @Override
     public void Login() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     

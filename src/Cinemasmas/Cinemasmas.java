@@ -15,7 +15,7 @@ public class Cinemasmas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DashboardAdmin lg = new DashboardAdmin();
+        ViewTheater lg = new ViewTheater();
         lg.setVisible(true);
         lg.pack();
         lg.setLocationRelativeTo(null);

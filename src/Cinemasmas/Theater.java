@@ -18,7 +18,7 @@ public class Theater {
         this.TheaterNum = TheaterNum;
     }
     
-    public void addScreening(Movie movie, String screenTime, int screenID){
+    public void addScreening(Movie movie, String screenTime, int price){
         
     }
 

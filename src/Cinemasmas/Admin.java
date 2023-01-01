@@ -62,5 +62,4 @@ public class Admin extends User{
         Admin min = new Admin("test", "test", "Admin");
         min.addMovie("Chainsawman", 3);
     }
-    
 }
