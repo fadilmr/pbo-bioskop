@@ -9,11 +9,16 @@ package Cinemasmas;
  *
  * @author Fadil
  */
-public abstract class User {
+public class User {
     private String name;
     private String username;
     private String Password;
     private String role;
+
+    public User() {
+        Login();
+    }
+    
 
     public User(String username, String Password, String role) {
         this.username = username;
@@ -21,6 +26,12 @@ public abstract class User {
         this.role = role;
     }    
     
-    public abstract void Login();
+    public void Login() {
+        Login lg = new Login();
+        lg.setVisible(true);
+        lg.pack();
+        lg.setLocationRelativeTo(null);
+        lg.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
+    }
     
 }

@@ -15,10 +15,6 @@ public class Cinemasmas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ViewTheater lg = new ViewTheater();
-        lg.setVisible(true);
-        lg.pack();
-        lg.setLocationRelativeTo(null);
-        lg.setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
+        new User();
     }
 }

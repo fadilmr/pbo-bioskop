@@ -25,16 +25,16 @@ public class DashboardCashier extends javax.swing.JFrame {
     private int id;
     private String movie;
     private String JamTayang;
+    private String cashier;
     static String[] SeatList  = new String[37];
     
-    public void updateSeat(Screening s) {
-    }
     
-    public DashboardCashier(int id, String movie, String jamTayang) {
+    public DashboardCashier(int id, String movie, String jamTayang, String cashier) {
         initComponents();
         this.id = id;
         this.movie = movie;
         this.JamTayang = jamTayang;
+        this.cashier = cashier;
         FilmText.setText("Film : " + movie);
         JamText.setText("Jam Tayang: " + jamTayang);
     }
@@ -141,6 +141,7 @@ public class DashboardCashier extends javax.swing.JFrame {
         Pricetext = new javax.swing.JLabel();
         SetKursiButton = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
+        CetakTiket = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -604,6 +605,13 @@ public class DashboardCashier extends javax.swing.JFrame {
             }
         });
 
+        CetakTiket.setText("Cetak Tiket");
+        CetakTiket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CetakTiketActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -620,22 +628,28 @@ public class DashboardCashier extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SelectedSeatText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Pricetext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel6))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(SelectedSeatText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Pricetext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel6))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SetKursiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 3, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SetKursiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                            .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(29, Short.MAX_VALUE))))
+                        .addGap(65, 65, 65)
+                        .addComponent(CetakTiket, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,9 +670,11 @@ public class DashboardCashier extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Pricetext)
                         .addGap(18, 18, 18)
-                        .addComponent(SetKursiButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ClearButton)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SetKursiButton)
+                            .addComponent(ClearButton))
+                        .addGap(18, 18, 18)
+                        .addComponent(CetakTiket)
                         .addContainerGap())))
         );
 
@@ -791,8 +807,13 @@ public class DashboardCashier extends javax.swing.JFrame {
         Pricetext.setText("");
     }//GEN-LAST:event_ClearButtonActionPerformed
 
+    private void CetakTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakTiketActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CetakTiketActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CetakTiket;
     private javax.swing.JButton ClearButton;
     private javax.swing.JLabel FilmText;
     private javax.swing.JLabel JamText;

@@ -13,12 +13,11 @@ import javax.swing.JOptionPane;
  * @author Fadil
  */
 public class Admin extends User{
-
+    
+    
     public Admin(String username, String Password, String role) {
         super(username, Password, role);
     }
-
-    
     public void addUser(String name, String username, String pass, String role) {
         PreparedStatement ps;
         String query = "INSERT INTO `user`(`Name`, `Username`, `Role`, `Password`) VALUES (?, ?, ?, ?)";
@@ -41,25 +40,16 @@ public class Admin extends User{
             }
         }
     }
+
+
     public void seeTransactionsHistory() {
         
-    }
-
-    @Override
-    public void Login() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }  
     public void addMovie(String title, int duration) {
         new Movie(title, duration);
     }
     
     public void deleteMovie(String id) {
         
-    }
-    
-    public static void main(String[] args) {
-        Admin min = new Admin("test", "test", "Admin");
-        min.addMovie("Chainsawman", 3);
     }
 }

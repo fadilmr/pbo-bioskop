@@ -119,34 +119,26 @@ public class Login extends javax.swing.JFrame {
 
     private void Login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_buttonActionPerformed
         // TODO add your handling code here:
-        
-        PreparedStatement ps;
         ResultSet rs;
         
         String username = Username_field.getText();
         String pass = String.valueOf(Password_field.getPassword());
         
-        String query = "SELECT * FROM `user` WHERE `Username` = ? AND `Password` = ?";
+        String query = "SELECT * FROM `user` WHERE `Username` = '" + username +"' AND `Password` = '" + pass+ "'";
         
         try {
-            ps = Config.getConnection().prepareStatement(query);
-            
-            ps.setString(1, username);
-            ps.setString(2, pass);
-            
-            rs = ps.executeQuery();
-            
+            rs = Config.AccessDB(query);
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 dispose();
                 if ("Kasir".equals(rs.getString("Role" ))) { 
-                    ViewTheater ds = new ViewTheater();
+                    ViewTheater ds = new ViewTheater(username);
                     ds.setVisible(true);
                     ds.pack();
                     ds.setLocationRelativeTo(null);
                     ds.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
                 } else {
-                    DashboardAdmin ds = new DashboardAdmin();
+                    DashboardAdmin ds = new DashboardAdmin(username);
                     ds.setVisible(true);
                     ds.pack();
                     ds.setLocationRelativeTo(null);
@@ -155,7 +147,7 @@ public class Login extends javax.swing.JFrame {
             } else {
                 jLabel1.setText("password atau username anda salah!");
             }
-            ps.close();
+            Config.disconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,38 +156,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Login_button;
     private javax.swing.JPasswordField Password_field;

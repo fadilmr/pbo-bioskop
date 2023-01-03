@@ -20,6 +20,8 @@ public class ViewTheater extends javax.swing.JFrame {
      * Creates new form ViewTheater
      */
     
+    private String cashier;
+    
     DefaultTableModel model[] = new DefaultTableModel[3];
     ArrayList<Integer> ScreeningId[] = new ArrayList[3];
     
@@ -54,13 +56,13 @@ public class ViewTheater extends javax.swing.JFrame {
         }
     }
     
-    public ViewTheater() {
+    public ViewTheater(String cashier) {
         initComponents();
         getMovie();
+        this.cashier = cashier;
         Table1.setModel(model[0]);
         Table2.setModel(model[1]);
         Table3.setModel(model[2]);
-        
     }
 
     /**
@@ -279,8 +281,15 @@ public class ViewTheater extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        System.out.println(Table2.getValueAt(Table2.getSelectedRow(), 0));
-        System.out.println(Table2.getValueAt(Table2.getSelectedRow(), 1));
+        String Title = Table2.getValueAt(Table2.getSelectedRow(), 0).toString();
+        String Jam = Table2.getValueAt(Table2.getSelectedRow(), 1).toString();
+        int id = ScreeningId[0].get(Table2.getSelectedRow());
+        dispose();
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
+        dc.setVisible(true);
+        dc.pack();
+        dc.setLocationRelativeTo(null);
+        dc.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -289,7 +298,7 @@ public class ViewTheater extends javax.swing.JFrame {
         String Jam = Table1.getValueAt(Table1.getSelectedRow(), 1).toString();
         int id = ScreeningId[0].get(Table1.getSelectedRow());
         dispose();
-        DashboardCashier dc = new DashboardCashier(id, Title, Jam);
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
         dc.setVisible(true);
         dc.pack();
         dc.setLocationRelativeTo(null);
@@ -298,44 +307,20 @@ public class ViewTheater extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        System.out.println(Table3.getValueAt(Table3.getSelectedRow(), 0));
-        System.out.println(Table3.getValueAt(Table3.getSelectedRow(), 1));
+        String Title = Table3.getValueAt(Table3.getSelectedRow(), 0).toString();
+        String Jam = Table3.getValueAt(Table3.getSelectedRow(), 1).toString();
+        int id = ScreeningId[0].get(Table3.getSelectedRow());
+        dispose();
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
+        dc.setVisible(true);
+        dc.pack();
+        dc.setLocationRelativeTo(null);
+        dc.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewTheater.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewTheater.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewTheater.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewTheater.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewTheater().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table1;

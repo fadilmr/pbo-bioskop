@@ -22,11 +22,4 @@ public class Cashier extends User{
     public void printTransactions() {
         
     }
-
-    @Override
-    public void Login() {
-        
-    }
-    
-    
 }

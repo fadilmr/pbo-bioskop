@@ -42,6 +42,4 @@ public class Screening {
     public HashMap<Seat, Boolean> getSeatAvailabilites() {
         return seatAvailabilites;
     }
-    
-    
 }

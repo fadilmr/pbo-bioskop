@@ -20,26 +20,24 @@ public class ViewMovie extends javax.swing.JDialog {
     
     String[] Ids = new String[50];
     Admin min = new Admin("", "", "");
-    public ViewMovie(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public ViewMovie() {
         initComponents();
         getMovie();
     }
     
+    
     public void getMovie() {
-        PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT * FROM movie";
         try {
-            ps = Config.getConnection().prepareStatement(query);
-            rs = ps.executeQuery();
+            rs = Config.AccessDB(query);
             int i = 0;
             while(rs.next()) {
                 MovieList.add(rs.getString("Title"));
                 Ids[i] = rs.getString("Movie_Id");
                 i++;
             }
-            ps.close();
+            Config.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,9 +180,8 @@ public class ViewMovie extends javax.swing.JDialog {
         // TODO add your handling code here:
         String query = "DELETE FROM `movie` WHERE `Movie_Id` = '" + Ids[MovieList.getSelectedIndex()] +"'";
         try {
-            PreparedStatement ps = Config.getConnection().prepareStatement(query);
-            ps.executeUpdate();
-            ps.close();
+            Config.Manipulate(query);   
+            Config.disconnect();
             RefreshList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,13 +192,12 @@ public class ViewMovie extends javax.swing.JDialog {
         // TODO add your handling code here:
         String query = "SELECT * FROM `movie` WHERE `Movie_Id`='"+ Ids[MovieList.getSelectedIndex()] +"'";
         try {
-            PreparedStatement ps = Config.getConnection().prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = Config.AccessDB(query);
             while(rs.next()) {
                 TitleField.setText(rs.getString("Title"));
                 DurationField.setText(Integer.toString(rs.getInt("Duration")));
             }
-            ps.close();
+            Config.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,9 +222,8 @@ public class ViewMovie extends javax.swing.JDialog {
         int duration = Integer.parseInt(DurationField.getText());
         String query = "UPDATE `movie` SET`Title`='"+ title +"',`Duration`='"+ duration +"' WHERE `Movie_Id` = '" + Ids[MovieList.getSelectedIndex()] + "'";
         try {
-            PreparedStatement ps = Config.getConnection().prepareStatement(query);
-            ps.executeUpdate();
-            ps.close();
+            Config.Manipulate(query);
+            Config.disconnect();
             RefreshList();
         } catch (Exception e) {
         }
@@ -239,46 +234,14 @@ public class ViewMovie extends javax.swing.JDialog {
         getMovie();
     }
     
+    
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ViewMovie dialog = new ViewMovie(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    public String[] getIds() {
+        return Ids;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

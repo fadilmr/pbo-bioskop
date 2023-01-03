@@ -7,13 +7,15 @@ package Cinemasmas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author Fadil
  */
 public class Config {
+    static Connection con = null;
     public static Connection getConnection(){
-        Connection con = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/cinemasmas";
@@ -26,4 +28,39 @@ public class Config {
         
         return con;
     }
+    
+    public static ResultSet AccessDB(String query) {
+        PreparedStatement ps;
+        ResultSet rs;
+        rs = null;
+        try {
+            ps = Config.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+    
+        public static void Manipulate(String query) {
+        PreparedStatement ps;
+        ResultSet rs;
+        rs = null;
+        try {
+            ps = Config.getConnection().prepareStatement(query);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public static void disconnect(){
+        try {
+            con.close();
+        } catch (Exception e) {
+        }
+    }
+    
 }
