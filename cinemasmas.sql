@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2023 at 11:05 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Jan 03, 2023 at 04:18 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,16 +31,17 @@ CREATE TABLE `movie` (
   `Movie_ID` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
   `Duration` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie`
 --
 
 INSERT INTO `movie` (`Movie_ID`, `Title`, `Duration`) VALUES
-(1, 'Bocchi The Rock!', 2),
-(2, 'SAO', 1),
-(3, 'Chainsawman', 3);
+(1, 'Bocchi The Rock!', 5),
+(3, 'ChainsawMid', 3),
+(8, 'asdasdasd', 1),
+(9, 'tes', 5);
 
 -- --------------------------------------------------------
 
@@ -54,7 +55,7 @@ CREATE TABLE `screening` (
   `MovieTitle` varchar(50) NOT NULL,
   `JamTayang` varchar(50) NOT NULL,
   `Price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `screening`
@@ -69,6 +70,20 @@ INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `Transaction_ID` int(11) NOT NULL,
+  `User` varchar(50) NOT NULL,
+  `Movie` varchar(255) NOT NULL,
+  `Theater` varchar(50) NOT NULL,
+  `Price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -78,14 +93,14 @@ CREATE TABLE `user` (
   `Username` varchar(255) NOT NULL,
   `Role` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`User_ID`, `Name`, `Username`, `Role`, `Password`) VALUES
-(1, 'a', 'a', 'Admin', 'a'),
+(1, 'Fadil', 'diru', 'Admin', 'a'),
 (3, 'Rafli', 'Raflidev', 'Kasir', 'asdasdasd');
 
 --
@@ -105,6 +120,12 @@ ALTER TABLE `screening`
   ADD PRIMARY KEY (`Screening_ID`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`Transaction_ID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -118,13 +139,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `Movie_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Movie_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
   MODIFY `Screening_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
