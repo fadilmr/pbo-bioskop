@@ -510,6 +510,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A1"/>
+                <Property name="name" type="java.lang.String" value="0" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
@@ -521,6 +522,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A2"/>
+                <Property name="name" type="java.lang.String" value="1" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton3">
@@ -529,6 +531,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A4"/>
+                <Property name="name" type="java.lang.String" value="3" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton4">
@@ -537,6 +540,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A3"/>
+                <Property name="name" type="java.lang.String" value="2" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton5">
@@ -545,6 +549,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A8"/>
+                <Property name="name" type="java.lang.String" value="7" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton6">
@@ -553,6 +558,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A7"/>
+                <Property name="name" type="java.lang.String" value="6" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton7">
@@ -561,6 +567,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A6"/>
+                <Property name="name" type="java.lang.String" value="5" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton8">
@@ -569,6 +576,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A5"/>
+                <Property name="name" type="java.lang.String" value="4" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton9">
@@ -577,6 +585,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A9"/>
+                <Property name="name" type="java.lang.String" value="8" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton10">
@@ -585,6 +594,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A10"/>
+                <Property name="name" type="java.lang.String" value="9" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton11">
@@ -593,6 +603,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A11"/>
+                <Property name="name" type="java.lang.String" value="10" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton12">
@@ -601,6 +612,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="A12"/>
+                <Property name="name" type="java.lang.String" value="11" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton13">
@@ -609,6 +621,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B12"/>
+                <Property name="name" type="java.lang.String" value="23" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton14">
@@ -617,6 +630,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B11"/>
+                <Property name="name" type="java.lang.String" value="22" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton15">
@@ -625,6 +639,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B10"/>
+                <Property name="name" type="java.lang.String" value="21" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton16">
@@ -633,6 +648,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B9"/>
+                <Property name="name" type="java.lang.String" value="20" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton17">
@@ -641,6 +657,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B8"/>
+                <Property name="name" type="java.lang.String" value="19" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton17ActionPerformed"/>
@@ -652,6 +669,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B7"/>
+                <Property name="name" type="java.lang.String" value="18" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton18ActionPerformed"/>
@@ -663,6 +681,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B6"/>
+                <Property name="name" type="java.lang.String" value="17" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton19ActionPerformed"/>
@@ -674,6 +693,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B5"/>
+                <Property name="name" type="java.lang.String" value="16" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton21">
@@ -682,6 +702,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B4"/>
+                <Property name="name" type="java.lang.String" value="15" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton22">
@@ -690,6 +711,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B3"/>
+                <Property name="name" type="java.lang.String" value="14" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton23">
@@ -698,6 +720,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B2"/>
+                <Property name="name" type="java.lang.String" value="13" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton24">
@@ -706,6 +729,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B1"/>
+                <Property name="name" type="java.lang.String" value="12" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton25">
@@ -714,6 +738,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C9"/>
+                <Property name="name" type="java.lang.String" value="32" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton26">
@@ -722,6 +747,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C6"/>
+                <Property name="name" type="java.lang.String" value="29" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton27">
@@ -730,6 +756,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C10"/>
+                <Property name="name" type="java.lang.String" value="33" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton28">
@@ -738,6 +765,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C11"/>
+                <Property name="name" type="java.lang.String" value="34" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton29">
@@ -746,6 +774,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C1"/>
+                <Property name="name" type="java.lang.String" value="24" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton30">
@@ -754,6 +783,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C8"/>
+                <Property name="name" type="java.lang.String" value="31" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton31">
@@ -762,6 +792,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C4"/>
+                <Property name="name" type="java.lang.String" value="27" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton32">
@@ -770,6 +801,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C12"/>
+                <Property name="name" type="java.lang.String" value="35" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton33">
@@ -778,6 +810,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C7"/>
+                <Property name="name" type="java.lang.String" value="30" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton34">
@@ -786,6 +819,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C2"/>
+                <Property name="name" type="java.lang.String" value="25" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton35">
@@ -794,6 +828,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C5"/>
+                <Property name="name" type="java.lang.String" value="28" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton36">
@@ -802,6 +837,7 @@
                   <ComponentRef name="SeatGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C3"/>
+                <Property name="name" type="java.lang.String" value="26" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

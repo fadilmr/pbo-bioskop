@@ -9,9 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Enumeration;
 //import javafx.scene.control.ToggleButton;
 import javax.swing.AbstractButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +29,9 @@ public class DashboardCashier extends javax.swing.JFrame {
     private String movie;
     private String JamTayang;
     private String cashier;
+    private String dbSeatAvailable;
+    private String currentSeatAvailable;
+    private ArrayList<Integer> seatSelected;
     static String[] SeatList  = new String[37];
     
     
@@ -35,8 +41,12 @@ public class DashboardCashier extends javax.swing.JFrame {
         this.movie = movie;
         this.JamTayang = jamTayang;
         this.cashier = cashier;
+        this.dbSeatAvailable = Screening.getSeatAvailabilites(id);
+        this.currentSeatAvailable = this.dbSeatAvailable;
+        this.seatSelected = new ArrayList<>();
         FilmText.setText("Film : " + movie);
         JamText.setText("Jam Tayang: " + jamTayang);
+        showSeatAvailabilities(this.currentSeatAvailable);
     }
 
     /**
@@ -48,10 +58,15 @@ public class DashboardCashier extends javax.swing.JFrame {
     public void getSeat(){
         int i = 0;
         String se = "";
+        
         for (Enumeration<AbstractButton> buttons = SeatGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
+            
             if (button.isSelected()) {
                 SeatList[i] = button.getText();
+                int idx = Integer.valueOf(button.getName());
+                this.seatSelected.add(idx);
+                currentSeatAvailable = currentSeatAvailable.substring(0, idx)+'0'+currentSeatAvailable.substring(idx+1);
             }
             if(SeatList[i] != null){
                 if (!se.equals("")) {
@@ -62,9 +77,34 @@ public class DashboardCashier extends javax.swing.JFrame {
             i++;
         }
         SelectedSeatText.setText(se);
-        String[] array = se.split(",");
+        String[] array = se.split(", ");
         System.out.println(array.length);
         Pricetext.setText(Integer.toString(array.length*25000));
+        updateSeatAvailabilities(array);
+        for (int seatNum : this.seatSelected) {
+            System.out.print(seatNum+" ");
+        }
+        System.out.println();
+        showSeatAvailabilities(this.currentSeatAvailable);
+    }
+    
+    public void showSeatAvailabilities(String seatAvailability) {
+        System.out.println(seatAvailability);
+        for (Enumeration<AbstractButton> buttons = SeatGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            int idx = Integer.valueOf(button.getName());
+            if (seatAvailability.charAt(idx) == '0') {
+                button.setEnabled(false);
+            } else {
+                button.setEnabled(true);
+            }
+        }
+    }
+    
+    public void updateSeatAvailabilities(String[] array) {
+        for (String s : array) {
+            System.out.println(s);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -329,6 +369,7 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton1);
         jToggleButton1.setText("A1");
+        jToggleButton1.setName("0"); // NOI18N
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -337,51 +378,67 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton2);
         jToggleButton2.setText("A2");
+        jToggleButton2.setName("1"); // NOI18N
 
         SeatGroup.add(jToggleButton3);
         jToggleButton3.setText("A4");
+        jToggleButton3.setName("3"); // NOI18N
 
         SeatGroup.add(jToggleButton4);
         jToggleButton4.setText("A3");
+        jToggleButton4.setName("2"); // NOI18N
 
         SeatGroup.add(jToggleButton5);
         jToggleButton5.setText("A8");
+        jToggleButton5.setName("7"); // NOI18N
 
         SeatGroup.add(jToggleButton6);
         jToggleButton6.setText("A7");
+        jToggleButton6.setName("6"); // NOI18N
 
         SeatGroup.add(jToggleButton7);
         jToggleButton7.setText("A6");
+        jToggleButton7.setName("5"); // NOI18N
 
         SeatGroup.add(jToggleButton8);
         jToggleButton8.setText("A5");
+        jToggleButton8.setName("4"); // NOI18N
 
         SeatGroup.add(jToggleButton9);
         jToggleButton9.setText("A9");
+        jToggleButton9.setName("8"); // NOI18N
 
         SeatGroup.add(jToggleButton10);
         jToggleButton10.setText("A10");
+        jToggleButton10.setName("9"); // NOI18N
 
         SeatGroup.add(jToggleButton11);
         jToggleButton11.setText("A11");
+        jToggleButton11.setName("10"); // NOI18N
 
         SeatGroup.add(jToggleButton12);
         jToggleButton12.setText("A12");
+        jToggleButton12.setName("11"); // NOI18N
 
         SeatGroup.add(jToggleButton13);
         jToggleButton13.setText("B12");
+        jToggleButton13.setName("23"); // NOI18N
 
         SeatGroup.add(jToggleButton14);
         jToggleButton14.setText("B11");
+        jToggleButton14.setName("22"); // NOI18N
 
         SeatGroup.add(jToggleButton15);
         jToggleButton15.setText("B10");
+        jToggleButton15.setName("21"); // NOI18N
 
         SeatGroup.add(jToggleButton16);
         jToggleButton16.setText("B9");
+        jToggleButton16.setName("20"); // NOI18N
 
         SeatGroup.add(jToggleButton17);
         jToggleButton17.setText("B8");
+        jToggleButton17.setName("19"); // NOI18N
         jToggleButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton17ActionPerformed(evt);
@@ -390,6 +447,7 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton18);
         jToggleButton18.setText("B7");
+        jToggleButton18.setName("18"); // NOI18N
         jToggleButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton18ActionPerformed(evt);
@@ -398,6 +456,7 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton19);
         jToggleButton19.setText("B6");
+        jToggleButton19.setName("17"); // NOI18N
         jToggleButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton19ActionPerformed(evt);
@@ -406,54 +465,71 @@ public class DashboardCashier extends javax.swing.JFrame {
 
         SeatGroup.add(jToggleButton20);
         jToggleButton20.setText("B5");
+        jToggleButton20.setName("16"); // NOI18N
 
         SeatGroup.add(jToggleButton21);
         jToggleButton21.setText("B4");
+        jToggleButton21.setName("15"); // NOI18N
 
         SeatGroup.add(jToggleButton22);
         jToggleButton22.setText("B3");
+        jToggleButton22.setName("14"); // NOI18N
 
         SeatGroup.add(jToggleButton23);
         jToggleButton23.setText("B2");
+        jToggleButton23.setName("13"); // NOI18N
 
         SeatGroup.add(jToggleButton24);
         jToggleButton24.setText("B1");
+        jToggleButton24.setName("12"); // NOI18N
 
         SeatGroup.add(jToggleButton25);
         jToggleButton25.setText("C9");
+        jToggleButton25.setName("32"); // NOI18N
 
         SeatGroup.add(jToggleButton26);
         jToggleButton26.setText("C6");
+        jToggleButton26.setName("29"); // NOI18N
 
         SeatGroup.add(jToggleButton27);
         jToggleButton27.setText("C10");
+        jToggleButton27.setName("33"); // NOI18N
 
         SeatGroup.add(jToggleButton28);
         jToggleButton28.setText("C11");
+        jToggleButton28.setName("34"); // NOI18N
 
         SeatGroup.add(jToggleButton29);
         jToggleButton29.setText("C1");
+        jToggleButton29.setName("24"); // NOI18N
 
         SeatGroup.add(jToggleButton30);
         jToggleButton30.setText("C8");
+        jToggleButton30.setName("31"); // NOI18N
 
         SeatGroup.add(jToggleButton31);
         jToggleButton31.setText("C4");
+        jToggleButton31.setName("27"); // NOI18N
 
         SeatGroup.add(jToggleButton32);
         jToggleButton32.setText("C12");
+        jToggleButton32.setName("35"); // NOI18N
 
         SeatGroup.add(jToggleButton33);
         jToggleButton33.setText("C7");
+        jToggleButton33.setName("30"); // NOI18N
 
         SeatGroup.add(jToggleButton34);
         jToggleButton34.setText("C2");
+        jToggleButton34.setName("25"); // NOI18N
 
         SeatGroup.add(jToggleButton35);
         jToggleButton35.setText("C5");
+        jToggleButton35.setName("28"); // NOI18N
 
         SeatGroup.add(jToggleButton36);
         jToggleButton36.setText("C3");
+        jToggleButton36.setName("26"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -801,14 +877,31 @@ public class DashboardCashier extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-        // TODO add your handling code here:
         SeatList = new String[SeatList.length];
+        seatSelected = new ArrayList<>();
+        currentSeatAvailable = dbSeatAvailable;
+        showSeatAvailabilities(currentSeatAvailable);
         SelectedSeatText.setText("");
         Pricetext.setText("");
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void CetakTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakTiketActionPerformed
-        // TODO add your handling code here:
+        Statement st;
+        String query = "UPDATE screening SET SeatAvailability='"+currentSeatAvailable+"' where Screening_ID='"+this.id+"'";
+        
+        try {
+            st = Config.getConnection().createStatement();
+            st.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Berhasil input data ke database");
+        dispose();
+        ViewTheater vt = new ViewTheater(this.cashier);
+        vt.setVisible(true);
+        vt.pack();
+        vt.setLocationRelativeTo(null);
+        vt.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
     }//GEN-LAST:event_CetakTiketActionPerformed
 
 

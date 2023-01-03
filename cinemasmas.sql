@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2023 at 04:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Jan 03, 2023 at 06:23 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `movie` (
   `Movie_ID` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
   `Duration` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `movie`
@@ -54,18 +54,19 @@ CREATE TABLE `screening` (
   `TheaterNum` int(11) NOT NULL,
   `MovieTitle` varchar(50) NOT NULL,
   `JamTayang` varchar(50) NOT NULL,
-  `Price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Price` int(11) NOT NULL,
+  `SeatAvailability` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `screening`
 --
 
-INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`, `Price`) VALUES
-(1, 1, 'Bocchi The Rock!', '12:00', 40000),
-(2, 1, 'Chainsaw MId', '14:00', 70000),
-(3, 2, 'Bocchi The Rock!', '12:00', 40000),
-(4, 3, 'Chainsaw MId', '14:00', 70000);
+INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`, `Price`, `SeatAvailability`) VALUES
+(1, 1, 'Bocchi The Rock!', '12:00', 40000, '000101111111111100001111111111111011'),
+(2, 1, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111'),
+(3, 2, 'Bocchi The Rock!', '12:00', 40000, '111111111111111111111111111111111111'),
+(4, 3, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111');
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,7 @@ CREATE TABLE `transaction` (
   `Movie` varchar(255) NOT NULL,
   `Theater` varchar(50) NOT NULL,
   `Price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,7 @@ CREATE TABLE `user` (
   `Username` varchar(255) NOT NULL,
   `Role` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -101,7 +102,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`User_ID`, `Name`, `Username`, `Role`, `Password`) VALUES
 (1, 'Fadil', 'diru', 'Admin', 'a'),
-(3, 'Rafli', 'Raflidev', 'Kasir', 'asdasdasd');
+(3, 'Rafli', 'Raflidev', 'Kasir', 'asdasdasd'),
+(4, 'a', 'a', 'Kasir', 'a');
 
 --
 -- Indexes for dumped tables
@@ -157,7 +159,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
