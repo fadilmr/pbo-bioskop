@@ -283,7 +283,7 @@ public class ViewTheater extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Title = Table2.getValueAt(Table2.getSelectedRow(), 0).toString();
         String Jam = Table2.getValueAt(Table2.getSelectedRow(), 1).toString();
-        int id = ScreeningId[0].get(Table2.getSelectedRow());
+        int id = ScreeningId[1].get(Table2.getSelectedRow());
         dispose();
         DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
         dc.setVisible(true);
@@ -309,7 +309,7 @@ public class ViewTheater extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Title = Table3.getValueAt(Table3.getSelectedRow(), 0).toString();
         String Jam = Table3.getValueAt(Table3.getSelectedRow(), 1).toString();
-        int id = ScreeningId[0].get(Table3.getSelectedRow());
+        int id = ScreeningId[2].get(Table3.getSelectedRow());
         dispose();
         DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
         dc.setVisible(true);

@@ -5,7 +5,11 @@
  */
 package Cinemasmas;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,7 +43,21 @@ public class Screening {
         return price;
     }
 
-    public HashMap<Seat, Boolean> getSeatAvailabilites() {
-        return seatAvailabilites;
+    public static String getSeatAvailabilites(int id) {
+        HashMap<Integer, Boolean> seatAvailabilities = new HashMap<>();
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        String query = "SELECT SeatAvailability FROM `screening` WHERE Screening_ID='" + id + "'";
+        String seatBin = "";
+        try {
+            ps = Config.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+            rs.next();
+            seatBin = rs.getString("SeatAvailability");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return seatBin;
     }
 }
