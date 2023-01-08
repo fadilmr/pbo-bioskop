@@ -44,12 +44,12 @@ public class ViewTheater extends javax.swing.JFrame {
 
             String query = "SELECT * FROM `screening` WHERE TheaterNum='" + Integer.toString(i) + "'";
             try {
-                ps = Config.getConnection().prepareStatement(query);
-                rs = ps.executeQuery();
+                rs = Config.AccessDB(query);
                 while(rs.next()) {
                     model[i-1].addRow(new Object[]{rs.getString("MovieTitle"), rs.getString("JamTayang")});
                     ScreeningId[i-1].add(rs.getInt("Screening_ID"));
                 }
+                Config.disconnect();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -285,7 +285,7 @@ public class ViewTheater extends javax.swing.JFrame {
         String Jam = Table2.getValueAt(Table2.getSelectedRow(), 1).toString();
         int id = ScreeningId[1].get(Table2.getSelectedRow());
         dispose();
-        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier, "2");
         dc.setVisible(true);
         dc.pack();
         dc.setLocationRelativeTo(null);
@@ -298,7 +298,7 @@ public class ViewTheater extends javax.swing.JFrame {
         String Jam = Table1.getValueAt(Table1.getSelectedRow(), 1).toString();
         int id = ScreeningId[0].get(Table1.getSelectedRow());
         dispose();
-        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier, "1");
         dc.setVisible(true);
         dc.pack();
         dc.setLocationRelativeTo(null);
@@ -311,7 +311,7 @@ public class ViewTheater extends javax.swing.JFrame {
         String Jam = Table3.getValueAt(Table3.getSelectedRow(), 1).toString();
         int id = ScreeningId[2].get(Table3.getSelectedRow());
         dispose();
-        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier);
+        DashboardCashier dc = new DashboardCashier(id, Title, Jam, this.cashier, "3");
         dc.setVisible(true);
         dc.pack();
         dc.setLocationRelativeTo(null);

@@ -5,6 +5,8 @@
  */
 package Cinemasmas;
 
+import java.sql.Statement;
+
 /**
  *
  * @author Fadil
@@ -15,11 +17,23 @@ public class Cashier extends User{
         super(username, Password, role);
     }
     
-    public void addTransaction() {
+    public void addTransaction(String id, String currentSeatAvailable, String movie, String theater, int price) {
+        Statement st;
+        String query = "UPDATE screening SET SeatAvailability='"+currentSeatAvailable+"' where Screening_ID='"+id+"'";
         
-    }
-    
-    public void printTransactions() {
+        try {
+            st = Config.getConnection().createStatement();
+            st.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
+        query = "INSERT INTO `transaction`(`Movie`, `Theater`, `Price`) VALUES ('" + movie + "','" + theater + "','" + price + "')";
+        try {
+            st = Config.getConnection().createStatement();
+            st.execute(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

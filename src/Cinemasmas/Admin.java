@@ -45,6 +45,7 @@ public class Admin extends User{
     public void seeTransactionsHistory() {
         
     }  
+    
     public void addMovie(String title, int duration) {
         new Movie(title, duration);
     }

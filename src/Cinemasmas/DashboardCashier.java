@@ -31,16 +31,20 @@ public class DashboardCashier extends javax.swing.JFrame {
     private String cashier;
     private String dbSeatAvailable;
     private String currentSeatAvailable;
+    private String theater;
+    private int price;
     private ArrayList<Integer> seatSelected;
     static String[] SeatList  = new String[37];
+    Cashier c = new Cashier("", "", "");
     
     
-    public DashboardCashier(int id, String movie, String jamTayang, String cashier) {
+    public DashboardCashier(int id, String movie, String jamTayang, String cashier, String theater) {
         initComponents();
         this.id = id;
         this.movie = movie;
         this.JamTayang = jamTayang;
         this.cashier = cashier;
+        this.theater = theater;
         this.dbSeatAvailable = Screening.getSeatAvailabilites(id);
         this.currentSeatAvailable = this.dbSeatAvailable;
         this.seatSelected = new ArrayList<>();
@@ -85,6 +89,7 @@ public class DashboardCashier extends javax.swing.JFrame {
             System.out.print(seatNum+" ");
         }
         System.out.println();
+        this.price = array.length*25000;
         showSeatAvailabilities(this.currentSeatAvailable);
     }
     
@@ -886,16 +891,12 @@ public class DashboardCashier extends javax.swing.JFrame {
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void CetakTiketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CetakTiketActionPerformed
-        Statement st;
-        String query = "UPDATE screening SET SeatAvailability='"+currentSeatAvailable+"' where Screening_ID='"+this.id+"'";
-        
         try {
-            st = Config.getConnection().createStatement();
-            st.execute(query);
+            c.addTransaction(movie, currentSeatAvailable, movie, theater, price);
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah transaksi.");
         }
-        JOptionPane.showMessageDialog(this, "Berhasil input data ke database");
+        JOptionPane.showMessageDialog(this, "Berhasil input data ke database.");
         dispose();
         ViewTheater vt = new ViewTheater(this.cashier);
         vt.setVisible(true);

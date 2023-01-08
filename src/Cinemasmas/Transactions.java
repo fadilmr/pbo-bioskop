@@ -21,7 +21,11 @@ public class Transactions {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price = price * selectedSeats.length;
     }
-   
+
+    public int getPrice() {
+        return price;
+    }
+    
 }

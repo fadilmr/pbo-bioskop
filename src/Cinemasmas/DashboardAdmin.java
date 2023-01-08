@@ -5,6 +5,9 @@
  */
 package Cinemasmas;
 
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fadil
@@ -15,10 +18,42 @@ public class DashboardAdmin extends javax.swing.JFrame {
      * Creates new form DashboardAdmin
      */
     private String adminUsername;
+    DefaultTableModel model;
+    public void getTransactionHistory() {
+        ResultSet rs;
+        model = new DefaultTableModel() {
+           public boolean isCellEditable(int row, int column) {
+                 //all cells false
+                return false;
+            }
+        };
+        
+        model.addColumn("Transaction_ID");
+        model.addColumn("Movie");
+        model.addColumn("Theater");
+        model.addColumn("Price");
+        
+        String query = "SELECT * FROM `transaction`";
+        
+        try {
+            rs = Config.AccessDB(query);
+            while (rs.next()) {
+                model.addRow(new Object[]{Integer.parseInt(rs.getString("Transaction_ID")), rs.getString("Movie"), rs.getString("Theater"), Integer.parseInt(rs.getString("Price"))});
+            }
+            Config.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        TransactionTable.setModel(model);
+        
+    }
+    
     public DashboardAdmin(String adminUsername) {
         initComponents();
         this.adminUsername = adminUsername;
         WelcomeText.setText("Welcome, " + adminUsername);
+        getTransactionHistory();
     }
 
     /**
@@ -32,7 +67,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TransactionTable = new javax.swing.JTable();
         WelcomeText = new javax.swing.JLabel();
         AddUserButton = new javax.swing.JButton();
         UpdateHistoryButton = new javax.swing.JButton();
@@ -43,26 +78,18 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(228, 239, 231));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TransactionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Transaction_ID", "Title", "Price"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        jScrollPane1.setViewportView(TransactionTable);
 
         WelcomeText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         WelcomeText.setText("jLabel1");
@@ -76,6 +103,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
 
         UpdateHistoryButton.setText("Update History");
+        UpdateHistoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateHistoryButtonActionPerformed(evt);
+            }
+        });
 
         MovieButton.setText("Movie");
         MovieButton.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +195,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         new ViewUser(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_UserListButtonActionPerformed
 
+    private void UpdateHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateHistoryButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UpdateHistoryButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,11 +206,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserButton;
     private javax.swing.JButton MovieButton;
+    private javax.swing.JTable TransactionTable;
     private javax.swing.JButton UpdateHistoryButton;
     private javax.swing.JButton UserListButton;
     private javax.swing.JLabel WelcomeText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
