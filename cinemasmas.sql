@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2023 at 06:23 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Jan 08, 2023 at 02:10 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `movie` (
   `Movie_ID` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
   `Duration` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie`
@@ -41,7 +41,7 @@ INSERT INTO `movie` (`Movie_ID`, `Title`, `Duration`) VALUES
 (1, 'Bocchi The Rock!', 5),
 (3, 'ChainsawMid', 3),
 (8, 'asdasdasd', 1),
-(9, 'tes', 5);
+(9, 'blackpink', 5);
 
 -- --------------------------------------------------------
 
@@ -56,14 +56,14 @@ CREATE TABLE `screening` (
   `JamTayang` varchar(50) NOT NULL,
   `Price` int(11) NOT NULL,
   `SeatAvailability` varchar(36) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `screening`
 --
 
 INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`, `Price`, `SeatAvailability`) VALUES
-(1, 1, 'Bocchi The Rock!', '12:00', 40000, '000101111111111100001111111111111011'),
+(1, 1, 'Bocchi The Rock!', '12:00', 40000, '000000001101111100001111111011111010'),
 (2, 1, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111'),
 (3, 2, 'Bocchi The Rock!', '12:00', 40000, '111111111111111111111111111111111111'),
 (4, 3, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111');
@@ -76,11 +76,19 @@ INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`
 
 CREATE TABLE `transaction` (
   `Transaction_ID` int(11) NOT NULL,
-  `User` varchar(50) NOT NULL,
   `Movie` varchar(255) NOT NULL,
   `Theater` varchar(50) NOT NULL,
   `Price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`Transaction_ID`, `Movie`, `Theater`, `Price`) VALUES
+(1, 'Bocchi The Rock!', '1', 50000),
+(2, 'Bocchi The Rock!', '1', 50000),
+(3, 'Bocchi The Rock!', '1', 75000);
 
 -- --------------------------------------------------------
 
@@ -94,7 +102,7 @@ CREATE TABLE `user` (
   `Username` varchar(255) NOT NULL,
   `Role` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -153,7 +161,7 @@ ALTER TABLE `screening`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
