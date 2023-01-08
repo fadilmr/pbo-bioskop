@@ -21,48 +21,17 @@ public class ViewTheater extends javax.swing.JFrame {
      */
     
     private String cashier;
-    
-    DefaultTableModel model[] = new DefaultTableModel[3];
     ArrayList<Integer> ScreeningId[] = new ArrayList[3];
     
-    public void getMovie() {
-        for (int i = 1; i <= 3; i++) {
-            model[i-1] = new DefaultTableModel() {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    //all cells false
-                    return false;
-                }
-            };
-            model[i-1].addColumn("Title");
-            model[i-1].addColumn("Jam");
-
-            ScreeningId[i-1] = new ArrayList<>();
-            
-            PreparedStatement ps;
-            ResultSet rs;
-
-            String query = "SELECT * FROM `screening` WHERE TheaterNum='" + Integer.toString(i) + "'";
-            try {
-                rs = Config.AccessDB(query);
-                while(rs.next()) {
-                    model[i-1].addRow(new Object[]{rs.getString("MovieTitle"), rs.getString("JamTayang")});
-                    ScreeningId[i-1].add(rs.getInt("Screening_ID"));
-                }
-                Config.disconnect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    Theater t = new Theater();
     
     public ViewTheater(String cashier) {
         initComponents();
-        getMovie();
         this.cashier = cashier;
-        Table1.setModel(model[0]);
-        Table2.setModel(model[1]);
-        Table3.setModel(model[2]);
+        Table1.setModel(t.getScreening()[0]);
+        Table2.setModel(t.getScreening()[1]);
+        Table3.setModel(t.getScreening()[2]);
+        ScreeningId = t.getScreeningId();
     }
 
     /**

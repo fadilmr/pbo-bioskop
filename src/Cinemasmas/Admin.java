@@ -41,29 +41,11 @@ public class Admin extends User{
         }
     }
     
-    public void editUser(String query) {
-        try {
-            Config.Manipulate(query);
-            Config.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addMovie(String title, int duration) {
         new Movie(title, duration);
     }
 //    
-    public void editMovie(String query) {
-        try {
-            Config.Manipulate(query);   
-            Config.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void deleteMovie(String query) {
+    public void edit(String query) {
         try {
             Config.Manipulate(query);   
             Config.disconnect();

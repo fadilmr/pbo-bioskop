@@ -187,7 +187,7 @@ public class ViewMovie extends javax.swing.JDialog {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        min.deleteMovie(query);
+        min.edit(query);
         RefreshList();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -224,7 +224,7 @@ public class ViewMovie extends javax.swing.JDialog {
         String title = TitleField.getText();
         int duration = Integer.parseInt(DurationField.getText());
         String query = "UPDATE `movie` SET`Title`='"+ title +"',`Duration`='"+ duration +"' WHERE `Movie_Id` = '" + Ids[MovieList.getSelectedIndex()] + "'";
-        min.editMovie(query);
+        min.edit(query);
         RefreshList();
     }//GEN-LAST:event_EditButtonActionPerformed
 

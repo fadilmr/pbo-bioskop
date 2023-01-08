@@ -47,7 +47,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         }
         
         TransactionTable.setModel(model);
-        
     }
     
     public DashboardAdmin(String adminUsername) {
@@ -71,9 +70,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         TransactionTable = new javax.swing.JTable();
         WelcomeText = new javax.swing.JLabel();
         AddUserButton = new javax.swing.JButton();
-        UpdateHistoryButton = new javax.swing.JButton();
-        MovieButton = new javax.swing.JButton();
+        ScreeningButton = new javax.swing.JButton();
         UserListButton = new javax.swing.JButton();
+        MovieButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,10 +102,18 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
 
-        UpdateHistoryButton.setText("Update History");
-        UpdateHistoryButton.addActionListener(new java.awt.event.ActionListener() {
+        ScreeningButton.setText("Screening");
+        ScreeningButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateHistoryButtonActionPerformed(evt);
+                ScreeningButtonActionPerformed(evt);
+            }
+        });
+
+        UserListButton.setText("Edit User");
+        UserListButton.setPreferredSize(new java.awt.Dimension(30, 30));
+        UserListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserListButtonActionPerformed(evt);
             }
         });
 
@@ -114,14 +121,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         MovieButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MovieButtonActionPerformed(evt);
-            }
-        });
-
-        UserListButton.setText("User List");
-        UserListButton.setPreferredSize(new java.awt.Dimension(30, 30));
-        UserListButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserListButtonActionPerformed(evt);
             }
         });
 
@@ -138,14 +137,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(WelcomeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UpdateHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UserListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(MovieButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(50, 50, 50)
+                                .addComponent(ScreeningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(AddUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(UserListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,13 +159,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(WelcomeText)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UpdateHistoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UserListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ScreeningButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,19 +187,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
         new Register().show();
     }//GEN-LAST:event_AddUserButtonActionPerformed
 
-    private void MovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MovieButtonActionPerformed
+    private void ScreeningButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScreeningButtonActionPerformed
         // TODO add your handling code here:
-        new ViewMovie().show();
-    }//GEN-LAST:event_MovieButtonActionPerformed
+        new ViewScreening().show();
+    }//GEN-LAST:event_ScreeningButtonActionPerformed
 
     private void UserListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserListButtonActionPerformed
         // TODO add your handling code here:
         new ViewUser(this, rootPaneCheckingEnabled).show();
     }//GEN-LAST:event_UserListButtonActionPerformed
 
-    private void UpdateHistoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateHistoryButtonActionPerformed
+    private void MovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MovieButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UpdateHistoryButtonActionPerformed
+        new ViewMovie().show();
+    }//GEN-LAST:event_MovieButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +209,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserButton;
     private javax.swing.JButton MovieButton;
+    private javax.swing.JButton ScreeningButton;
     private javax.swing.JTable TransactionTable;
-    private javax.swing.JButton UpdateHistoryButton;
     private javax.swing.JButton UserListButton;
     private javax.swing.JLabel WelcomeText;
     private javax.swing.JPanel jPanel1;
