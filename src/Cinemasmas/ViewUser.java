@@ -19,6 +19,7 @@ public class ViewUser extends javax.swing.JDialog {
      */
     
     public String Ids[] = new String[50];
+    Admin min = new Admin("", "", "");
     
     public void getUser(){
         ResultSet rs;
@@ -223,13 +224,8 @@ public class ViewUser extends javax.swing.JDialog {
         String role = RoleBox.getSelectedItem().toString();
         
         String query = "UPDATE `user` SET `Name`='"+ name +"',`Username`='"+ username +"',`Role`='"+ role +"' WHERE `User_ID` = '" + Ids[UserList.getSelectedIndex()] +"'";
-        try {
-            Config.Manipulate(query);
-            Config.disconnect();
-            RefreshList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        min.editUser(query);
+        RefreshList();
     }//GEN-LAST:event_EditButtonActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed

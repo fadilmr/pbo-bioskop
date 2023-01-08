@@ -85,11 +85,13 @@ public class DashboardCashier extends javax.swing.JFrame {
         System.out.println(array.length);
         Pricetext.setText(Integer.toString(array.length*25000));
         updateSeatAvailabilities(array);
+        System.out.println("test");
         for (int seatNum : this.seatSelected) {
             System.out.print(seatNum+" ");
         }
         System.out.println();
         this.price = array.length*25000;
+        System.out.println("newSeat");
         showSeatAvailabilities(this.currentSeatAvailable);
     }
     
@@ -110,6 +112,7 @@ public class DashboardCashier extends javax.swing.JFrame {
         for (String s : array) {
             System.out.println(s);
         }
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -896,6 +899,9 @@ public class DashboardCashier extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menambah transaksi.");
         }
+        
+        Screening.changeSeat(id, currentSeatAvailable);
+       
         JOptionPane.showMessageDialog(this, "Berhasil input data ke database.");
         dispose();
         ViewTheater vt = new ViewTheater(this.cashier);
@@ -903,6 +909,7 @@ public class DashboardCashier extends javax.swing.JFrame {
         vt.pack();
         vt.setLocationRelativeTo(null);
         vt.setDefaultCloseOperation(DashboardCashier.EXIT_ON_CLOSE);
+        
     }//GEN-LAST:event_CetakTiketActionPerformed
 
 

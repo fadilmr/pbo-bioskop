@@ -31,8 +31,9 @@ public class Screening {
         }
     }
     
-    public void changeSeat(int i) {
-        // ganti availability seat
+    public static void changeSeat(int id, String currentSeatAvailable) {
+        String query = "UPDATE screening SET SeatAvailability='"+currentSeatAvailable+"' where Screening_ID='"+id+"'";
+        Config.Manipulate(query);
     }
 
     public Movie getMovie() {

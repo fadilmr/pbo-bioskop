@@ -19,16 +19,8 @@ public class Cashier extends User{
     
     public void addTransaction(String id, String currentSeatAvailable, String movie, String theater, int price) {
         Statement st;
-        String query = "UPDATE screening SET SeatAvailability='"+currentSeatAvailable+"' where Screening_ID='"+id+"'";
-        
-        try {
-            st = Config.getConnection().createStatement();
-            st.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        query = "INSERT INTO `transaction`(`Movie`, `Theater`, `Price`) VALUES ('" + movie + "','" + theater + "','" + price + "')";
+
+        String query = "INSERT INTO `transaction`(`Movie`, `Theater`, `Price`) VALUES ('" + movie + "','" + theater + "','" + price + "')";
         try {
             st = Config.getConnection().createStatement();
             st.execute(query);

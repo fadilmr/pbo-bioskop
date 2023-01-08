@@ -179,13 +179,16 @@ public class ViewMovie extends javax.swing.JDialog {
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         // TODO add your handling code here:
         String query = "DELETE FROM `movie` WHERE `Movie_Id` = '" + Ids[MovieList.getSelectedIndex()] +"'";
-        try {
-            Config.Manipulate(query);   
-            Config.disconnect();
-            RefreshList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
+//        try {
+//            Config.Manipulate(query);   
+//            Config.disconnect();
+//            RefreshList();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        min.deleteMovie(query);
+        RefreshList();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void MovieListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MovieListMouseClicked
@@ -221,12 +224,8 @@ public class ViewMovie extends javax.swing.JDialog {
         String title = TitleField.getText();
         int duration = Integer.parseInt(DurationField.getText());
         String query = "UPDATE `movie` SET`Title`='"+ title +"',`Duration`='"+ duration +"' WHERE `Movie_Id` = '" + Ids[MovieList.getSelectedIndex()] + "'";
-        try {
-            Config.Manipulate(query);
-            Config.disconnect();
-            RefreshList();
-        } catch (Exception e) {
-        }
+        min.editMovie(query);
+        RefreshList();
     }//GEN-LAST:event_EditButtonActionPerformed
 
     public void RefreshList() {
