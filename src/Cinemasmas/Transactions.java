@@ -10,7 +10,6 @@ package Cinemasmas;
  * @author rafli
  */
 public class Transactions {
-    private int transactionId;
     private Screening screening;
     private int price;
     private Seat[] selectedSeats;

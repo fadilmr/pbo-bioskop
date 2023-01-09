@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2023 at 02:10 AM
+-- Generation Time: Jan 10, 2023 at 12:01 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,9 +39,10 @@ CREATE TABLE `movie` (
 
 INSERT INTO `movie` (`Movie_ID`, `Title`, `Duration`) VALUES
 (1, 'Bocchi The Rock!', 5),
-(3, 'ChainsawMid', 3),
-(8, 'asdasdasd', 1),
-(9, 'blackpink', 5);
+(3, 'MiddMan', 3),
+(10, 'onimai', 2),
+(11, 'kiseki', 72),
+(12, 'onepiece', 2);
 
 -- --------------------------------------------------------
 
@@ -64,9 +65,13 @@ CREATE TABLE `screening` (
 
 INSERT INTO `screening` (`Screening_ID`, `TheaterNum`, `MovieTitle`, `JamTayang`, `Price`, `SeatAvailability`) VALUES
 (1, 1, 'Bocchi The Rock!', '12:00', 40000, '000000001101111100001111111011111010'),
-(2, 1, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111'),
 (3, 2, 'Bocchi The Rock!', '12:00', 40000, '111111111111111111111111111111111111'),
-(4, 3, 'Chainsaw MId', '14:00', 70000, '111111111111111111111111111111111111');
+(5, 3, 'onimai', '14:00', 20000, '001111111111111100011111111111111111'),
+(7, 3, 'MiddMan', '15:00', 40000, '111111111111111111111111111111111111'),
+(8, 3, 'kiseki', '15:00', 40000, '111111111111111111111111111111111111'),
+(9, 3, 'MiddMan', '15:00', 40000, '111111111111111111111111111111111111'),
+(10, 2, 'onimai', '15:00', 40000, '111111111111111111111111111111111111'),
+(12, 1, 'onepiece', '11:00', 20000, '111111111111111111111111111111111111');
 
 -- --------------------------------------------------------
 
@@ -88,7 +93,16 @@ CREATE TABLE `transaction` (
 INSERT INTO `transaction` (`Transaction_ID`, `Movie`, `Theater`, `Price`) VALUES
 (1, 'Bocchi The Rock!', '1', 50000),
 (2, 'Bocchi The Rock!', '1', 50000),
-(3, 'Bocchi The Rock!', '1', 75000);
+(3, 'Bocchi The Rock!', '1', 75000),
+(4, 'Bocchi The Rock!', '1', 50000),
+(5, 'Chainsaw MId', '1', 50000),
+(6, 'Chainsaw MId', '1', 50000),
+(7, 'Chainsaw MId', '1', 50000),
+(8, 'Chainsaw MId', '1', 50000),
+(9, 'Chainsaw MId', '3', 50000),
+(12, 'Chainsaw MId', '1', 25000),
+(13, 'onimai', '3', 75000),
+(14, 'onimai', '3', 50000);
 
 -- --------------------------------------------------------
 
@@ -111,7 +125,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`User_ID`, `Name`, `Username`, `Role`, `Password`) VALUES
 (1, 'Fadil', 'diru', 'Admin', 'a'),
 (3, 'Rafli', 'Raflidev', 'Kasir', 'asdasdasd'),
-(4, 'a', 'a', 'Kasir', 'a');
+(4, 'Sien', 'a', 'Cashier', 'a'),
+(5, 'saf', 'safads', 'Admin', 'asdasdasd'),
+(6, 'asd', 'asd', 'Cashier', 'asdasdasd');
 
 --
 -- Indexes for dumped tables
@@ -149,25 +165,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `Movie_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Movie_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
-  MODIFY `Screening_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Screening_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Transaction_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

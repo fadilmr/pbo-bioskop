@@ -20,8 +20,8 @@ public class Theater {
     ArrayList<Integer> ScreeningId[] = new ArrayList[3];
 
     public Theater() {
+        
     }
-
     
     public DefaultTableModel[] getScreening(){
          for (int i = 1; i <= 3; i++) {

@@ -16,15 +16,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Fadil
  */
 public class Screening {
-    private int screenId;
     private Movie movie;
-    private String screenTime;
     private HashMap<Seat, Boolean> seatAvailabilites = new HashMap<>();
     private int price;
 
     public Screening(Movie movie, String screenTime, int price, Seat[] seat) {
         this.movie = movie;
-        this.screenTime = screenTime;
         this.price = price;
         for (Seat seat1 : seat) {
             seatAvailabilites.put(seat1, true);
